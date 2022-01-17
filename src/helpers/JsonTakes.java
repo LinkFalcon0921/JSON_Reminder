@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Managers.CreateLetters;
 import data.Letters;
 
 public class JsonTakes {
@@ -22,7 +23,8 @@ public class JsonTakes {
 
 				for (int t = 0; t < ps.length(); t++) {
 					JSONObject obj = ps.getJSONObject(t);
-					Letters lt = new Letters(obj.getString("Subject"),obj.getString("Description"));
+					Letters lt = CreateLetters.get().create(obj.getString("Subject"),obj.getString("Description"));
+					lt.setDate(obj.getLong("Date"));
 					base.add(lt);
 				}
 			}

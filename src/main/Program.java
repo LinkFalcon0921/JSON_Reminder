@@ -15,23 +15,21 @@ public class Program {
 		print("Hola");
 		print("Ingrese su nombre: ");
 		String name = sc.next();
+		String infos[] = new String[2];
 		
 		ManageLetters manager = new ManageLetters(name);
 		
 		do {
 			menu();
-			int ch = sc.nextInt();
+			int ch = sc.nextInt()+0;
 
 			switch (ch) {
 			//Agregar
 			case 1:
-				print("Ingrese el titulo:");
-				String sb = sc.next();
-				print("Ingrese la descripcion:");
-				String desc = sc.next();
+				print("Ingrese el titulo: Descripcion ->");
+				infos = sc.next().stripLeading().split(":");
 
-				manager.createLetter(sb, desc);
-				print("Archivo creado");
+				manager.createLetter(infos[0], infos[1]);
 				break;
 
 				//Mostrar
@@ -43,6 +41,9 @@ public class Program {
 			case 3:
 				state = false;
 				break;
+				
+				default:
+					
 			}
 
 		} while (state);
@@ -68,6 +69,7 @@ public class Program {
 			Letters info = data.next();
 			print(info.getSUBJECT());
 			print(info.getDescp());
+			print(String.format("Fecha de creacion: %s", info.createdDate()));
 			print(divide);
 		}
 	}

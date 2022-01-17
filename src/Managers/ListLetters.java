@@ -1,9 +1,7 @@
 package Managers;
 
 import java.util.*;
-
 import data.Letters;
-import helpers.JsonTakes;
 
 public class ListLetters {
 	private Stack<Letters> letters;

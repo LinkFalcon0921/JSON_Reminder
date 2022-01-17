@@ -21,6 +21,7 @@ public class JsonSaves {
 				JSONObject item = new JSONObject();
 				item.put("Subject", act.getSUBJECT());
 				item.put("Description", act.getDescp());
+				item.put("Date", act.getDate());
 
 				list.put(item);
 			}

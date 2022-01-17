@@ -1,9 +1,6 @@
 package helpers;
 
 import java.io.*;
-import java.util.Iterator;
-
-import data.Letters;
 
 public class DataFiles {
 
@@ -38,8 +35,4 @@ public class DataFiles {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		DataFiles file = new DataFiles();
-
-	}
 }
