@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import data.DateInfo;
 import data.Letters;
 
 public class JsonSaves {
@@ -21,7 +22,10 @@ public class JsonSaves {
 				JSONObject item = new JSONObject();
 				item.put("Subject", act.getSUBJECT());
 				item.put("Description", act.getDescp());
-				item.put("Date", act.getDate().getTime());
+				
+				DateInfo fech = act.getDate();
+				item.put("Date created", fech.getCreated().getTime());
+				item.put("Date reminder", fech.getReminder().getTime());
 
 				list.put(item);
 			}

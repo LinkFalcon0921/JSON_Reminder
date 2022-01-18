@@ -19,17 +19,16 @@ public class JsonTakes {
 			json = getJson(site);
 			JSONArray ps = new JSONArray(json);
 
-			if (ps.length() > 0) {
 
 				for (int t = 0; t < ps.length(); t++) {
 					JSONObject obj = ps.getJSONObject(t);
 					Letters lt = CreateLetters.get().create(obj.getString("Subject"),obj.getString("Description"));
-					lt.setDate(obj.getLong("Date"));
+					lt.setDateCreated(obj.getLong("Date created"));
+					lt.setDateReminder(obj.getLong("Date reminder"));
 					base.add(lt);
-				}
 			}
 
-		} catch (JSONException e) {
+		} catch (JSONException | NullPointerException e) {
 		}
 
 		return base;
@@ -44,9 +43,7 @@ public class JsonTakes {
 			while (myReader.hasNextLine()) {
 				sb.append(myReader.nextLine());
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (FileNotFoundException | NullPointerException e) {
 		}
 
 		return sb.toString();

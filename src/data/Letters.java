@@ -93,6 +93,14 @@ public class Letters implements Clonate, Serializable {
 	public void setDate() {
 		days = new DateInfo();
 	}
+	
+	public String dateCreated() {
+		return days.dateCreated();
+	}
+	
+	public String dateReminder() {
+		return days.dateReminder();
+	}
 
 	@Override
 	public String toString() {

@@ -19,17 +19,21 @@ public class DateInfo implements Clonate {
 	/** Devuelve la fecha de creacion en texto */
 	public String dateCreated() {
 		try {
-		return ConvertorDate.get().getDateInfo(created);
-		}catch(NullPointerException ex) {
+			return ConvertorDate.get().getDateInfo(created);
+		} catch (NullPointerException ex) {
 			return "Fecha no asignada!";
 		}
-		}
+	}
+	
+	public long dateCreatedMilis() {
+		return this.created.getTime();
+	}
 
 	/** Devuelve la fecha de aviso en texto */
 	public String dateReminder() {
 		try {
 			return ConvertorDate.get().getDateInfo(reminder);
-		}catch(NullPointerException ex) {
+		} catch (NullPointerException ex) {
 			return "Fecha no asignada!";
 		}
 	}
