@@ -1,9 +1,6 @@
 package data;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Letters implements Clonate, Serializable {
 	/**
@@ -16,7 +13,7 @@ public class Letters implements Clonate, Serializable {
 
 	/** DESCRIPCION DEL DOCUMENTO */
 	private String descp;
-	private Date dayC;
+	private DateInfo days;
 
 	public Letters(final String subj) {
 		SUBJECT = subj;
@@ -25,6 +22,12 @@ public class Letters implements Clonate, Serializable {
 	public Letters(final String subj, String descrition) {
 		this(subj);
 		descp = descrition;
+	}
+
+	public Letters(final String subj, String descrition, long date) {
+		this(subj);
+		descp = descrition;
+		setDateCreated(date);
 	}
 
 	/** OBTENER LA DESCRIPCION */
@@ -44,36 +47,66 @@ public class Letters implements Clonate, Serializable {
 
 	// OBTIENE LA FECHA DE CREACION
 	public String createdDate() {
-		return new SimpleDateFormat("dd/mm/yyyy").format(dayC);
+		return days.dateCreated();
 	}
 
-	public Date getDate() {
-		return dayC;
+	/**
+	 * Recupera una copia de las fechas que maneja el recoradatorio (Creacion y
+	 * fecha de aviso).
+	 */
+	public DateInfo getDate() {
+		return (DateInfo) days.clone();
 	}
 
-	public void setDate(Long dat) {
-		if (dat != null) {
-			if(dayC != null) {
-				dayC = new Date(dat);
-				return;
-			}
-			dayC.setTime(dat);
-		}
+	/** Establece la fecha de creacion */
+	public boolean setDateCreated(long date) {
+		setObjectDate();
 
+		return days.setDatecreated(date);
+	}
+
+	/** Establece la fecha de creacion */
+	public boolean setDateCreated() {
+		setObjectDate();
+
+		return days.setDatecreated();
+	}
+
+	private void setObjectDate() {
+		if (days == null)
+			days = new DateInfo();
+	}
+
+	/** Establece la fecha de aviso */
+	public boolean setDateReminder(String date) {
+		setObjectDate();
+
+		return days.setDateReminder(date);
+	}
+
+	public boolean setDateReminder(long date) {
+		setObjectDate();
+
+		return days.setDateReminder(date);
 	}
 
 	public void setDate() {
-		dayC = Calendar.getInstance().getTime();
+		days = new DateInfo();
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Este recordatorio hace referecia a %s", getSUBJECT());
+		return String.format("Titulo: %s\nDescripcion: %s\n %s", getSUBJECT(), getDescp(), days.toString());
 	}
 
+	/**
+	 * Recupera un clon del Objeto <br>
+	 * This case is a object Letters.
+	 */
 	public Clonate clone() {
 		Letters let = new Letters(SUBJECT, descp);
 		let.setDate();
+		let.setDateReminder(serialVersionUID);
 
 		return let;
 

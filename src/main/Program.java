@@ -27,7 +27,7 @@ public class Program {
 			//Agregar
 			case 1:
 				print("Ingrese el titulo: Descripcion ->");
-				infos = sc.next().stripLeading().split(":");
+				infos = new Scanner(System.in).nextLine().split(":");
 
 				manager.createLetter(infos[0], infos[1]);
 				break;
@@ -53,7 +53,7 @@ public class Program {
 	}
 
 	private static void menu() {
-		System.out.println("Menu\n" + "1. Agregar recordatorio.\n" + "2. Mostrar recordatorio.\n" + "3.Salir.");
+		print("Menu\n" + "1. Agregar recordatorio.\n" + "2. Mostrar recordatorio.\n" + "3.Salir.");
 	}
 
 	private static void print(String data) {
@@ -67,9 +67,7 @@ public class Program {
 		
 		while (data.hasNext()) {
 			Letters info = data.next();
-			print(info.getSUBJECT());
-			print(info.getDescp());
-			print(String.format("Fecha de creacion: %s", info.createdDate()));
+			print(info.toString());
 			print(divide);
 		}
 	}
